@@ -1,5 +1,5 @@
 """
-WSGI config for Lac_server project.
+WSGI config for losing-a-cow project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Lac_server.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'losing-a-cow.settings')
 
 application = get_wsgi_application()
