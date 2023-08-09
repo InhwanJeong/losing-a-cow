@@ -1,7 +1,5 @@
 import os
-import shutil
-import csv
-from data_preprocessing import DataPreprocessing
+import pandas as pd
 
 
 class App:
@@ -10,36 +8,30 @@ class App:
         self.files: list = os.listdir(self.file_path)
 
     def start_app(self):
-        while True:
-            print("0. 종료\n1. 데이터 일부 조회")
-            input_data = int(input("파일이름 입력:"))
-            if not input_data:
-                break
-            self.__retrieve_data()
+        for file in self.files:
+            self.__get_data(file)
 
-    def __retrieve_data(self):
-        while True:
-            print("b 입력시 뒤로가기")
-            print("\n".join(self.files[:5]))
-            file = input("파일이름 입력:")
-            if file == 'b':
-                break
-            if file not in self.files:
-                continue
-            self.__read_csv(file)
+    def __get_data(self, file: str):
+        df = pd.read_csv(os.path.join(self.file_path, file), encoding='euc-kr')
 
-    def __read_csv(self, file):
-        with open(os.path.join(self.file_path, file), 'r', encoding='euc-kr') as f:
-            table = csv.reader(f)
-            for i, item in enumerate(table):
-                print(item)
-                if i == 10:
-                    break
+        key = [
+            key for key in df.keys()
+            if '접수일' in key and not '코드' in key
+               or '위해자연령' in key and not '코드' in key
+               or '원인' in key and not '코드' in key
+               or '품목대분류' in key and not '코드' in key
+               or '부위' in key and not '코드' in key
+               or '발생장소' in key and not '코드' in key
+        ]
+        if len(key) != 6:
+            return
 
-    def get_data(self):
-        pass
+        filtered_df = df.get(key)
+        rows = filtered_df[:].values.tolist()
+        self.__upload_data(rows)
 
-    def upload_data(self):
+    def __upload_data(self, rows: list):
+        # TODO 서버에서 데이터를 받을 수 있도록 준비 및 데이터 업로드
         pass
 
 
