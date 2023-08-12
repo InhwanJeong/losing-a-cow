@@ -1,4 +1,11 @@
 {% extends 'service/base.html' %}
+
+{% block header_nav %}
+<a href="{% url 'index' %}" class="header-nav-item" style="color:#1DB6F2;">메인</a>
+<div class="header-nav-line">|</div>
+<a href="{% url 'kca_list' %}" class="header-nav-item">빅데이터</a>
+{% endblock %}
+
 {% block content %}
 hello inanJeong this is content
 {% endblock %}

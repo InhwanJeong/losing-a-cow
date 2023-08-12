@@ -9,18 +9,31 @@
 </head>
 <body>
     <div class="header-container">
-        <div class="header-logo">logo</div>
+        <img class="header-logo" src="{%static 'logo.png' %}">
+        <div class="header-space"></div>
         <div class="header-nav">
+            <div class="header-nav-line">|</div>
+            {% block header_nav %}
             <div class="header-nav-item">메인</div>
+            <div class="header-nav-line">|</div>
             <div class="header-nav-item">빅데이터</div>
+            {% endblock %}
+            <div class="header-nav-line">|</div>
         </div>
+        <div class="header-space"></div>
     </div>
+
     <div class="content-container">
-        {% block content %}
-        {% endblock %}
+        <div class="content-side"></div>
+        <div class="content-main">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="content-side"></div>
     </div>
+
     <div class="footer-container">
-        footer
+        Copyright 2023. All Rights Reserved. | made by inhwan Jeong
     </div>
 </body>
 </html>
