@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>{% block title %}losing-a-cow{% endblock %}</title>
+</head>
+<body>
+    <div class="header-container">
+        <div class="header-logo">logo</div>
+        <div class="header-nav">
+            <div class="header-nav-item">메인</div>
+            <div class="header-nav-item">빅데이터</div>
+        </div>
+    </div>
+    <div class="content-container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div class="footer-container">
+        footer
+    </div>
+</body>
+</html>
