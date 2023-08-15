@@ -7,5 +7,47 @@
 {% endblock %}
 
 {% block content %}
-kcp list page
+    <div class="kca-container">
+        <div class="kca-header">위험 데이터 조회</div>
+        <div class="kca-table-container">
+            <div class="kca-table-row kca-title">
+                <div class="kca-item">No.</div>
+                <div class="kca-item">사고일자</div>
+                <div class="kca-item">연령</div>
+                <div class="kca-item">사고내용</div>
+                <div class="kca-item">사고물건</div>
+                <div class="kca-item">사고부위</div>
+                <div class="kca-item">사고장소</div>
+            </div>
+            {% for post in posts %}
+            <div class="kca-table-row">
+                <div class="kca-item">{{post.id}}</div>
+                <div class="kca-item">{{post.filing_date}}</div>
+                <div class="kca-item">{{post.age}}</div>
+                <div class="kca-item">{{post.injury_caused}}</div>
+                <div class="kca-item">{{post.injury_item}}</div>
+                <div class="kca-item">{{post.affected_area}}</div>
+                <div class="kca-item">{{post.affected_place}}</div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="kca-footer">
+            {% if posts.has_previous %}
+                <a href="?page=1"><<</a>
+                <a href="?page={{posts.previous_page_number}}"><</a>
+            {% endif %}
+            {% for page_num in page_numbers %}
+                {% if page_num == "..." %}
+                    {{page_num}}
+                {% else %}
+                    <a href="?page={{page_num}}">{{page_num}}</a>
+                {% endif %}
+
+            {% endfor %}
+            {% if posts.has_next %}
+                <a href="?page={{posts.next_page_number}}">></a>
+                <a href="?page={{posts.paginator.num_pages}}">>></a>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}

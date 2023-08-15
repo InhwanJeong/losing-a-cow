@@ -23,5 +23,6 @@ def kca_list(request):
         'service/kca_list.html',
         dict(
             posts=posts,
+            page_numbers=posts.paginator.get_elided_page_range(page)
         )
     )
