@@ -7,5 +7,53 @@
 {% endblock %}
 
 {% block content %}
-hello inanJeong this is content
+<div class="kca-container">
+    <div class="welcome-message">
+        방문해주셔서 감사합니다. 총 {{all_count}}번, 오늘 하루 {{today_count}}번 이용되었습니다.
+    </div>
+    {% if not result %}
+        <div class="insert-container">
+            <input id="input-age" class="input-age" placeholder="나이를 입력해주세요." onkeyup="checkValidation()">
+            <div class="submit-button" onclick="onClick()">확인</div>
+        </div>
+    {% else %}
+        test
+    {% endif %}
+</div>
+
+<script>
+function checkValidation(){
+    input_age = document.getElementById("input-age");
+    age = input_age.value
+
+    if (isNaN(age) || age>100 || age < 1){
+        input_age.value = null;
+        input_age.focus;
+    }
+}
+
+function onClick(){
+    input_age = document.getElementById("input-age");
+    age = input_age.value
+    if (isNaN(age) || age>100 || age < 1 || age == ""){
+        input_age.value = null;
+        input_age.focus;
+        alert("1~100의 숫자를 입력해주세요.");
+        return
+    }
+
+    fetch("/api/inference", {
+        method: "POST",
+        body: JSON.stringify({
+            age: age,
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    });
+
+    location.href="?age=" + age;
+}
+</script>
 {% endblock %}
+

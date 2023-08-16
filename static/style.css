@@ -89,11 +89,24 @@ a:hover, a:active { text-decoration: none; }
 }
 
 .input-age{
+    margin-top: 2em;
+    font-size: 1.2em;
 }
 
 .submit-button{
     display: flex;
-    background: skyblue;
+    padding: 0.5em;
+    border-radius: 0.3em;
+    background: #FFFFFF;
+    color: #1DB6F2;
+    margin-top: 0.8em;
+    margin-bottom: 2em;
+    border: 0.1em solid #1DB6F2;
+}
+
+.submit-button:hover{
+    background: #1DB6F2;
+    color: #FFFFFF;
 }
 
 .kca-container{
