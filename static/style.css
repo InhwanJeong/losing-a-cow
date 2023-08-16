@@ -109,6 +109,45 @@ a:hover, a:active { text-decoration: none; }
     color: #FFFFFF;
 }
 
+.inference-container{
+     display: flex;
+     justify-content: center;
+     margin-top: 2em;
+}
+
+.inference-title{
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+}
+.inference-row{
+    background: #F1EFE9;
+    border-radius: 1em;
+    margin-right: 1em;
+    padding: 2em 1em;
+}
+
+.inference-item{
+    display: flex;
+    flex: 1;
+    font-size: 14px;
+    padding: 8px 0;
+    justify-content: left;
+    align-items: center;
+}
+
+.goto-main-button-container{
+    display: flex;
+    justify-content: center;
+}
+
+.goto-main-button{
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+    width: 200px;
+}
+
 .kca-container{
     margin-top: 1em;
     border-radius: 1em;

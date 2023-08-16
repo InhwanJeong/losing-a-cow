@@ -8,16 +8,59 @@
 
 {% block content %}
 <div class="kca-container">
-    <div class="welcome-message">
-        방문해주셔서 감사합니다. 총 {{all_count}}번, 오늘 하루 {{today_count}}번 이용되었습니다.
-    </div>
-    {% if not result %}
+    {% if not inferences %}
+        <div class="welcome-message">
+            방문해주셔서 감사합니다. 총 {{all_count}}번, 오늘 하루 {{today_count}}번 이용되었습니다.
+        </div>
         <div class="insert-container">
             <input id="input-age" class="input-age" placeholder="나이를 입력해주세요." onkeyup="checkValidation()">
             <div class="submit-button" onclick="onClick()">확인</div>
         </div>
     {% else %}
-        test
+        <div class="welcome-message">
+            {{age}}세 분석 통계 결과
+        </div>
+        <div class="inference-container">
+            <div class="inference-row">
+                <div class="inference-title">위해 원인</div>
+                {% for item in inferences.injury_caused %}
+                <div class="inference-item">
+                    {{forloop.counter}}위 {{item.count}}건
+                    <br> {{item.injury_caused}}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="inference-row">
+                <div class="inference-title">위해 물건</div>
+                {% for item in inferences.injury_item %}
+                <div class="inference-item">
+                    {{forloop.counter}}위 {{item.count}}건
+                    <br> {{item.injury_item}}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="inference-row">
+                <div class="inference-title">사고 부위</div>
+                {% for item in inferences.affected_area %}
+                <div class="inference-item">
+                    {{forloop.counter}}위 {{item.count}}건
+                    <br> {{item.affected_area}}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="inference-row">
+                <div class="inference-title">피해 장소</div>
+                {% for item in inferences.affected_place %}
+                <div class="inference-item">
+                    {{forloop.counter}}위 {{item.count}}건
+                    <br> {{item.affected_place}}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="goto-main-button-container">
+            <a href="{% url 'index' %}" class="submit-button goto-main-button">메인으로</a>
+        </div>
     {% endif %}
 </div>
 
