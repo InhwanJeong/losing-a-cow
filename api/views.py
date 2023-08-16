@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from api.serializers import KCADataSerializer
-from service.models import KCACustomerDangerousData
+from api.serializers import KCADataSerializer, InferenceSerializer
+from service.models import KCACustomerDangerousData, Inference
 
 
 class KCADataViewSet(
@@ -10,3 +10,11 @@ class KCADataViewSet(
 ):
     queryset = KCACustomerDangerousData.objects.all()
     serializer_class = KCADataSerializer
+
+
+class InferenceViewSet(
+    viewsets.GenericViewSet,
+    viewsets.mixins.CreateModelMixin,
+):
+    queryset = Inference.objects.all()
+    serializer_class = InferenceSerializer
